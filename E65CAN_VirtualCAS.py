@@ -13,7 +13,7 @@ class VirtualCAS:
         print("GearShifter initialized")
 
     def setIgnition(self, status):
-        self.ignition_status = status
+        self.ignition_status = status 
 
     def sendIgnition(self, bus):
 

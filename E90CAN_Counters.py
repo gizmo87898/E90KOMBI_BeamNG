@@ -7,6 +7,9 @@ class Counters:
     ABScounter = 240
     ABSmessage = can.Message(data = [0xF4,0xFF], arbitration_id = 0x0C0, is_extended_id=False)
 
+    AirbagCounter = 0
+    AirbagMessage = can.Message(data = [0x00,0xFF], arbitration_id = 0x0D7, is_extended_id=False)
+
     def __init__(self):
         print("Counters initialized")
 
@@ -16,8 +19,16 @@ class Counters:
             self.ABScounter = 240
         else:
            self.ABScounter += 1
-        data = [self.ABScounter, 0xFF]
+        data = [self.ABScounter, 0xFF] 
         print(data)
         bus.send(can.Message(data = data, arbitration_id = 0x0C0, is_extended_id=False))
-
+    
+    def sendAirbag(self, bus):
+        if self.AirbagCounter == 255:
+            self.AirbagCounter = 0
+        else:
+           self.AirbagCounter += 1
+        data = [self.AirbagCounter, 0xFF] 
+        print(data)
+        bus.send(can.Message(data = data, arbitration_id = 0x0D7, is_extended_id=False))
 
