@@ -14,7 +14,10 @@ class Handbrake:
             data = [0xFD,0xFF]
         else:
             data = [0xFE,0xFF]
-        print(data)
-        bus.send(can.Message(data = data, arbitration_id = 0x34F, is_extended_id=False))
+        print("Handbrake: " + self.status)
+        try:
+            bus.send(can.Message(data = data, arbitration_id = 0x34F, is_extended_id=False))
+        except:
+            print("Handbrake message not sent")
     
    

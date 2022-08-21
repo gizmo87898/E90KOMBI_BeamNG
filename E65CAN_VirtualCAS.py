@@ -33,5 +33,5 @@ class VirtualCAS:
                 data = [0x45,0x43,0x39,0xBF,self.counter]
             case "start":
                 data = [0x45,0x43,0x35,0xBF,self.counter]
-        # print(data)
+        print("Ignition: " + self.ignition_status)
         bus.send(can.Message(data = data, arbitration_id = 0x130, is_extended_id=False))

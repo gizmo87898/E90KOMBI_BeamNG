@@ -27,6 +27,6 @@ class Speed:
         self.speedbytes[1] = int(((( time.time() - self.lastsentat ) / 50) * self.speed ) + self.speedbytes[1]) 
         self.lastsentat = time.time()
         data = [self.speedbytes[0], self.speedbytes[1],self.speedbytes[0], self.speedbytes[1],self.speedbytes[0], self.speedbytes[1],self.speedbytes[0], self.speedbytes[1]] 
-        print(time.time())
+        print("Speed: " + str(self.speed))
         bus.send(can.Message(data = data, arbitration_id = 0x0C0, is_extended_id=False))
     

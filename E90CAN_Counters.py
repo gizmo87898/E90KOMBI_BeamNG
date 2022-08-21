@@ -20,8 +20,11 @@ class Counters:
         else:
            self.ABScounter += 1
         data = [self.ABScounter, 0xFF] 
-        print(data)
-        bus.send(can.Message(data = data, arbitration_id = 0x0C0, is_extended_id=False))
+        try:
+            bus.send(can.Message(data = data, arbitration_id = 0x0C0, is_extended_id=False))
+        except can.CanError:
+            print("Message not sent")
+        
     
     def sendAirbag(self, bus):
         if self.AirbagCounter == 255:
@@ -29,6 +32,9 @@ class Counters:
         else:
            self.AirbagCounter += 1
         data = [self.AirbagCounter, 0xFF] 
-        print(data)
-        bus.send(can.Message(data = data, arbitration_id = 0x0D7, is_extended_id=False))
+        try:
+            bus.send(can.Message(data = data, arbitration_id = 0x0D7, is_extended_id=False))
+        except can.CanError:
+            print("Message not sent")
+
 
