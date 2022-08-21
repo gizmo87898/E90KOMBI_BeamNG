@@ -10,6 +10,7 @@ import can
 import time
 import socket
 import struct
+
 can.rc['interface'] = 'seeedstudio'
 can.rc['channel'] = 'COM8'
 can.rc['bitrate'] = 100000
@@ -146,4 +147,3 @@ while True:
 
 # Release the socket.
 
-sleeper100ms = PeriodicSleeper(update, 0.1)
