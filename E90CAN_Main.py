@@ -68,12 +68,10 @@ sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # Bind to LFS.
 sock.bind(('127.0.0.1', 4444))
-
-def update():
-    
+while True:
     data = sock.recv(96)
     if not data:
-        return
+        break
     outgauge_pack = struct.unpack('I4sH2c7f2I3f16s16si', data)
     gametime = outgauge_pack[0]
     car = outgauge_pack[1]
@@ -115,9 +113,6 @@ def update():
     if showlights[14] == "1":
         print("High-Beam Active")
     
-
-
-
     if showlights[9] == "1":
         if showlights[10] == "1":
             indicators.setIndicators('hazard')
