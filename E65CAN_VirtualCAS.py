@@ -30,8 +30,11 @@ class VirtualCAS:
             case "acc":
                 data = [0x41,0x43,0x35,0x3F,self.counter]
             case "run":
-                data = [0x45,0x43,0x39,0xBF,self.counter]
+                data = [0x45,0x40,0x21,0x8F,self.counter]
             case "start":
                 data = [0x45,0x43,0x35,0xBF,self.counter]
-        print("Ignition: " + self.ignition_status)
-        bus.send(can.Message(data = data, arbitration_id = 0x130, is_extended_id=False))
+
+        try:
+            bus.send(can.Message(data = data, arbitration_id = 0x130, is_extended_id=False))
+        except:
+            print("Ignition message not sent") 

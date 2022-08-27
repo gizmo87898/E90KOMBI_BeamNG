@@ -22,6 +22,10 @@ class Counters:
         data = [self.ABScounter, 0xFF] 
         try:
             bus.send(can.Message(data = data, arbitration_id = 0x0C0, is_extended_id=False))
+            data = [0x00,0x20,0xb3,0x00,0x00,0x40,0x00,0x00]
+            data[2] = ((((data[2] >> 4) + 3) << 4) & 0xF0) | 0x03
+
+            bus.send(can.Message(data = [0x00,0x20,0xE0,0x00,0x00,0x00,0x00,0xA0], arbitration_id = 0x19E, is_extended_id=False))
         except can.CanError:
             print("Message not sent")
         
